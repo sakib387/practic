@@ -6,14 +6,13 @@ import ContactLinst from "./ContactLinst"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 function App() {
   const key = "user_key"
-  const [contact, setContact] = useState([]);
-function Add_new_user(user) {
-  setContact(prevContact => {
-    const updatedContact = [...prevContact, user];
-    localStorage.setItem(key, JSON.stringify(updatedContact));
-    return updatedContact;
-  });
-}
+  const [contact, setContact] = useState([[
+    '1','sakib','asf',
+  ]]);
+  function Add_new_user(user) {
+    setContact([...contact, user]);
+    localStorage.setItem(key, JSON.stringify(contact))
+  }
 
   useEffect(() => {
     const item = JSON.parse(localStorage.getItem(key));
@@ -25,8 +24,7 @@ function Add_new_user(user) {
       console.log("Updated contact state:", contact);
     }
   }, []);
- 
- 
+  
   function delete_(id) {
     const a = prompt("Are you sure to delete this user? ");
     if (a === "yes") {
